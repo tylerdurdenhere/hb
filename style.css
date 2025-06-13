@@ -1,0 +1,106 @@
+/* style.css */
+
+:root {
+  --lavender: #e6e6fa;
+  --plum: #5d3a6a;
+  --soft-white: #fffafc;
+  --night: #0b0c2a;
+  --pastel: #f3e5f5;
+}
+
+body {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  background-color: var(--lavender);
+  color: var(--plum);
+  transition: background-color 0.5s ease, color 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+body.dark-mode {
+  background-color: var(--night);
+  color: var(--soft-white);
+}
+
+.hidden {
+  display: none;
+}
+
+#lock-screen {
+  text-align: center;
+  background: var(--pastel);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+#lock-screen input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+#lock-screen button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: var(--plum);
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#main-content {
+  max-width: 600px;
+  background: var(--soft-white);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+body.dark-mode #main-content {
+  background: #1c1c3c;
+}
+
+header h1 {
+  font-family: 'Cookie', cursive;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.message p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+#theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: 2px solid var(--plum);
+  color: var(--plum);
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode #theme-toggle {
+  border-color: var(--soft-white);
+  color: var(--soft-white);
+}
+
+footer {
+  margin-top: 2rem;
+  font-style: italic;
+  opacity: 0.8;
+}
