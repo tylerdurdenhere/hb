@@ -1,36 +1,36 @@
 // script.js
 
-const unlockBtn = document.getElementById('unlock-btn');
-const nameInput = document.getElementById('name-input');
-const errorMsg = document.getElementById('error-msg');
-const lockScreen = document.getElementById('lock-screen');
-const mainContent = document.getElementById('main-content');
-const themeToggle = document.getElementById('theme-toggle');
-
-const birthday = new Date('2025-06-16');
-const today = new Date();
-today.setHours(0, 0, 0, 0);
-
-unlockBtn.addEventListener('click', () => {
-  const enteredName = nameInput.value.trim().toLowerCase();
-
-  if (enteredName !== 'placeholder') {
-    errorMsg.textContent = 'Hmm... that doesn\'t seem right. Try again 💭';
-    return;
-  }
-
-  if (today < birthday) {
-    errorMsg.textContent = `Patience! This unlocks on June 16 🌸`;
-    return;
-  }
-
-  lockScreen.classList.add('hidden');
-  mainContent.classList.remove('hidden');
+// --- Theme toggle ---
+const toggleBtn = document.getElementById('theme-toggle');
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('preferred-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
 });
 
-// Theme toggle
-let isDark = false;
-themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  isDark = !isDark;
+// --- Load preferred theme or default to system ---
+window.addEventListener('DOMContentLoaded', () => {
+  const preferredTheme = localStorage.getItem('preferred-theme');
+  if (preferredTheme) {
+    if (preferredTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+  } else {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark-mode');
+    }
+  }
+
+  // 🔐 Unlock using secret key in URL
+  const params = new URLSearchParams(window.location.search);
+  const key = params.get('key');
+  const allowedKey = 'stardust'; // 👈 You can change this to whatever you want
+
+  if (key !== allowedKey) {
+    document.body.innerHTML = `
+      <div style="text-align:center; padding:2rem;">
+        <h2>💌 This page is not ready for you... yet.</h2>
+        <p>If this was meant for you, check the link again! 🌙</p>
+      </div>
+    `;
+  }
 });
